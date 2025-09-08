@@ -1,27 +1,52 @@
 from django.shortcuts import render
 # from django.http import HttpResponse
+from app.models import Card
+
 
 # Create your views here.
 def home(request):
 
-    # # TODO: get the cards data from the model (database's table)
+    # Fetch all records from the Card model
+    cards = Card.objects.all()
+    print(f"\ncards : {cards}\n")
+    # <QuerySet [<Card: Beautiful Landscape 123>, <Card: Urban Cityscape 123>, <Card: 123>, <Card: 456>]>
+
+    # - cards is the output from `Card.objects.all()`
+    # - cards contains all the cards from the Model
+    # - cards have a special datatype known as `QuerySet`
+    # - `QuerySet` datatype, is a dataype created by Django
+    # - `QuerySet` datatype, is similiar to List datatype but with more features to serve Django records
+
+    ########## Below is testing code, for displaying cards on terminal:
+    # # i will loop over `cards` to print on my terminal all my cards
+    # for card in cards:
+    #     # card is a record from `cards`, it represents each card record from the Card Model
+    #     print("")
+    #     print("-"*20)
+    #     print(f"image : {card.image}")
+    #     print(f"title : {card.title}")
+    #     print(f"description : {card.description}")
+    #     print("-"*20)
+    #     print("")
+    ##########
+
     # Dummy data / Hard coded data
-    cards = [
-        {
-            "image": "img/landscape.jpeg",
-            "title": "Beautiful Landscape",
-            "description": "Experience the breathtaking beauty of nature with this stunning landscape photograph showcasing mountains and a calm lake.",
-        },
-        {
-            "image": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            "title": "Urban Cityscape",
-            "description": "Explore the vibrant energy of a modern city with its impressive architecture and bustling streets in this urban photography.",
-        },
-        {
-            "image": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-            "title": "Testing",
-            "description": "Explore the vibrant energy of a modern city with its impressive architecture and bustling streets in this urban photography.",
-        },
+    # cards = [
+    #     {
+    #         "image": "img/landscape.jpeg",
+    #         "title": "Beautiful Landscape",
+    #         "description": "Experience the breathtaking beauty of nature with this stunning landscape photograph showcasing mountains and a calm lake.",
+    #     },
+    #     {
+    #         "image": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    #         "title": "Urban Cityscape",
+    #         "description": "Explore the vibrant energy of a modern city with its impressive architecture and bustling streets in this urban photography.",
+    #     },
+    #     {
+    #         "image": "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    #         "title": "Testing",
+    #         "description": "Explore the vibrant energy of a modern city with its impressive architecture and bustling streets in this urban photography.",
+    #     },
         # {
         #     "image": "https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
         #     "title": "Mystical Forest",
@@ -47,7 +72,8 @@ def home(request):
         #     "title": "Tesing 123",
         #     "description": "Get up close with nature's magnificent creatures in their natural habitat through this captivating wildlife photography.",
         # },
-    ]
+    # ]
+
     # return HttpResponse("<h1>Hello</h1>")
     return render(request, 'app/home.html', {"cards": cards})
 
