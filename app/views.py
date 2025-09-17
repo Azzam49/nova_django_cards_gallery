@@ -87,5 +87,5 @@ def contact_us(request):
 
 
 def testing(request):
-    cards = Card.objects.all() # Access all Cards data
-    return render(request, 'app/Testing/testing.html', {"cards": cards})
+    
+    return render(request, 'app/Testing/testing.html', {})
