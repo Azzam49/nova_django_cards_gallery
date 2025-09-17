@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # from django.http import HttpResponse
-from app.models import Card
+from app.models import Card, TeamMember
 
 
 # Create your views here.
@@ -87,5 +87,5 @@ def contact_us(request):
 
 
 def testing(request):
-    
-    return render(request, 'app/Testing/testing.html', {})
+    team_members = TeamMember.objects.all()
+    return render(request, 'app/Testing/testing.html', {"team_members": team_members})

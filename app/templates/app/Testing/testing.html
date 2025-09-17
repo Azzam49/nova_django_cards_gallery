@@ -1,5 +1,15 @@
 {% extends 'app/assets/base.html' %}
 
 {% block mainBlock %}
-    
+
+<h1>Team Members</h1>
+
+    {% for team_member in team_members %}
+        <div class="card" style="width: 18rem; margin-right: 30px;">
+        <div class="card-body">
+            <h5 class="card-title">{{team_member.name}}</h5>
+            <a href="#" class="btn btn-primary">{{team_member.title}}</a>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}
