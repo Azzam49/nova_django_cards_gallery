@@ -10,5 +10,6 @@ class CardAdmin(admin.ModelAdmin):
     list_display = [
         # "image",
         "title",
+        "phone",
         "description",
     ]
