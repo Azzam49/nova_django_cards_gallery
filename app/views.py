@@ -7,11 +7,14 @@ from app.models import Card
 def home(request):
 
     # Fetch all records from the Card model
-    cards = Card.objects.all()
-    print(f"\ncards : {cards}\n")
-    # <QuerySet [<Card: Beautiful Landscape 123>, <Card: Urban Cityscape 123>, <Card: 123>, <Card: 456>]>
+    cards = Card.objects.all() # ORM Query (Object Relational Mapping)
+    # cards is QuerySet datatype, you can treat it as list of dicts
 
-    # - cards is the output from `Card.objects.all()`
+    return render(request, 'app/home.html', {"cards": cards})
+
+
+
+ # - cards is the output from `Card.objects.all()`
     # - cards contains all the cards from the Model
     # - cards have a special datatype known as `QuerySet`
     # - `QuerySet` datatype, is a dataype created by Django
@@ -74,8 +77,10 @@ def home(request):
         # },
     # ]
 
-    # return HttpResponse("<h1>Hello</h1>")
-    return render(request, 'app/home.html', {"cards": cards})
-
 def about_us(request):
     return render(request, 'app/about_us.html', {})
+
+
+def contact_us(request):
+    cards = Card.objects.all() # Access all Cards data
+    return render(request, 'app/contact_us.html', {"cards": cards}) # Passing data to contact_us HTML page

@@ -1,0 +1,14 @@
+{% extends 'app/assets/base.html' %}
+
+{% block mainBlock %}
+    <h1>Contact Us<h1>
+
+    {% for card in cards %}
+
+        <p style="margin: 50px;">
+            Card Title : {{card.title}} <b>
+            Card Description : {{card.description}}
+        </p>
+
+    {% endfor %}
+{% endblock mainBlock %}

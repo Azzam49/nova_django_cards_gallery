@@ -5,27 +5,18 @@
 
 {% block mainBlock %}
 
-    {% for card in cards %}
+   {% for card in cards %}
 
-        <div class="col">
-            <div class="card h-100">
-
-                {% if "https" in card.image %}
-                    <img src="{{card.image}}" class="card-img-top" alt="Cityscape">
-                {% else %}
-                    <img src="{% static card.image %}" class="card-img-top" alt="Cityscape">
-                {% endif %}
-
-                <div class="card-body">
-                    <h5 class="card-title">{{card.title}}</h5>
-                    <p class="card-text">{{card.description}}</p>
-                    <a href="#" class="btn btn-primary">View Details</a>
-                </div>
-            </div>
+    <div class="card" style="width: 18rem; margin-right: 30px;">
+        <img src="{{card.image}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{card.title}}</h5>
+            <p class="card-text">{{card.description}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
+    </div>
 
-
-    {% endfor %}
+   {% endfor %}
 
 
 {% endblock mainBlock %}
