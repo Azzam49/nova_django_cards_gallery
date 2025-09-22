@@ -105,10 +105,53 @@ def testing(request):
     # age__gte means this condition `age >= 18`
     # __gte stands for `greater than or equal to`
     # age__gte applies `age >= 18` for age column, to fetch only adult team members
-    adult_members = TeamMember.objects.filter(age__gte = 18)
+    # adult_members = TeamMember.objects.filter(age__gte = 18)
 
-    # 3 - Fetch only team members that their (title includes `dev`)
+    # 3 - Fetch only teenagers and kids team members (age < 18)
+    # age__lt means this condition `age < 18`
+    # __lt stands for `less than`
+    # kids_and_teenagers_members = TeamMember.objects.filter(age__lt = 18)
+
+    # Summary of Comparsion Operator for IntgerField
+        # __gte means greater than or equal to
+        # __lte means less than or equal to
+        # __gt means greater than
+        # __lt means less than
+
+    # 4 - Fetch team members that have title as "Developer"
+    # Fetch team members that the title value is exactly "Developer" (case sensetive)
+        # will fetch for `title = "Developer"`
+        # will not fetch for `title = "developer"`
+    # We are using string value, because title on TeamMember is CharField
+    # developer_members = TeamMember.objects.filter(title = "Developer")
 
 
-    print(f"\nteam_members : {adult_members}\n")
-    return render(request, 'app/Testing/testing.html', {"team_members": adult_members})
+    # 5 - Fetch only team members that their (title includes `De`)
+    # Fetch all team members that includes `De` on the title
+        # in our case will fetch (title as 'Developer' and 'Designer')
+        # will not fetch title as 'Customer Service'
+    # __icontains filter by partial value from the title column
+    # title_contains_De = TeamMember.objects.filter(title__icontains = "De")
+
+
+    # 6 - Fetch only team members that age is between (18 - 30)
+    # To achieve this:
+        # 1 - check for (age greater than or equal to 18) (age >= 18)
+            # age__gte = 18
+        # 2 - check for (age less than or equal to 30) (age <= 30)
+            # age__lte = 30
+    # age_between_18_and_30 = TeamMember.objects.filter(age__gte = 18, age__lte = 30)
+        # .filter(age__gte = 18, age__lte = 30)
+            # the comma means `AND`:
+                # age__gte = 18 AND age__lte = 30
+
+    # 7 - Fetch team members that title is `Developer` and age is between 6-10
+    kids_developer_member = TeamMember.objects.filter(
+        age__gte = 6,
+        age__lte = 10,
+        title = "Developer",
+    )
+
+
+    print(f"\nteam_members : {kids_developer_member}\n")
+    return render(request, 'app/Testing/testing.html', {"team_members": kids_developer_member})

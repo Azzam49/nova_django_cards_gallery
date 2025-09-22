@@ -14,10 +14,10 @@ class Card(models.Model):
 
 # Camel Case
 class TeamMember(models.Model):
-    # Text = CharField
+    # Text/String = CharField
     name = models.CharField(max_length=100) # required
 
-    # Text = CharField
+    # Text/String = CharField
     title = models.CharField(max_length=200, blank=True, null=True) # optional
 
     # Number = IntegerField
