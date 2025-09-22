@@ -161,6 +161,13 @@ def testing(request):
 
     # 9 - Fetch all team members - but exclude team members that has title='Developer'
     non_developer_members = TeamMember.objects.exclude(title = 'Developer')
+        # This was fetching both Alice and John
+            # Alice , title = blank
+            # John, title = 'Developer'
 
-    print(f"\nteam_members : {non_developer_members}\n")
-    return render(request, 'app/Testing/testing.html', {"team_members": non_developer_members})
+    # 10 - Fetch all team members that DO have a title (not blank) - but exclude team members that has title='Developer'
+    non_developer_members_that_have_title = TeamMember.objects.exclude(title = 'Developer').filter(title__isnull=False)
+        # Fetch only John, because Alice does not have a title
+
+    print(f"\nteam_members : {non_developer_members_that_have_title}\n")
+    return render(request, 'app/Testing/testing.html', {"team_members": non_developer_members_that_have_title})
