@@ -146,17 +146,21 @@ def testing(request):
                 # age__gte = 18 AND age__lte = 30
 
     # 7 - Fetch team members that title is `Developer` and age is between 6-10
-    kids_developer_member = TeamMember.objects.filter(
-        age__gte = 6,
-        age__lte = 10,
-        title = "Developer",
-    )
+    # kids_developer_member = TeamMember.objects.filter(
+    #     age__gte = 6,
+    #     age__lte = 10,
+    #     title = "Developer",
+    # )
 
     # 8 - Fetch team members that does not have any title (blank title)
         # title__isnull=True this will fetch (team members that DON'T have title - blank)
         # title__isnull=False this will fetch (team members that DO have title - not blank)
         # __isnull helps us to look for if column have or not have value
-    blank_title_members = TeamMember.objects.filter(title__isnull = True)
+    # blank_title_members = TeamMember.objects.filter(title__isnull = True)
 
-    print(f"\nteam_members : {blank_title_members}\n")
-    return render(request, 'app/Testing/testing.html', {"team_members": blank_title_members})
+
+    # 9 - Fetch all team members - but exclude team members that has title='Developer'
+    non_developer_members = TeamMember.objects.exclude(title = 'Developer')
+
+    print(f"\nteam_members : {non_developer_members}\n")
+    return render(request, 'app/Testing/testing.html', {"team_members": non_developer_members})
