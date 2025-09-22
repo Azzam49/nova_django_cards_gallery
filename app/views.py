@@ -152,6 +152,11 @@ def testing(request):
         title = "Developer",
     )
 
+    # 8 - Fetch team members that does not have any title (blank title)
+        # title__isnull=True this will fetch (team members that DON'T have title - blank)
+        # title__isnull=False this will fetch (team members that DO have title - not blank)
+        # __isnull helps us to look for if column have or not have value
+    blank_title_members = TeamMember.objects.filter(title__isnull = True)
 
-    print(f"\nteam_members : {kids_developer_member}\n")
-    return render(request, 'app/Testing/testing.html', {"team_members": kids_developer_member})
+    print(f"\nteam_members : {blank_title_members}\n")
+    return render(request, 'app/Testing/testing.html', {"team_members": blank_title_members})
