@@ -87,5 +87,28 @@ def contact_us(request):
 
 
 def testing(request):
-    team_members = TeamMember.objects.all()
-    return render(request, 'app/Testing/testing.html', {"team_members": team_members})
+    # QuerySet          # ORM Query
+    # ORM Query = give us result as QuerySet
+    # QuerySet = is the collection of data from our model
+
+    # This ORM query fetch all the data from TeamMember.
+    # team_members = TeamMember.objects.all()
+
+    # Goal : Write different ORM Query, to meet our filtering needs.
+
+    # 1 - Fetch only active team members (is_active = True)
+    #   filter(`column_you_want_to_filter_by` = `value_you_want_to_filter_with`)
+    #   filter() will return QuerySet, that have all the data that meets the conditon is_active=True
+    # active_members = TeamMember.objects.filter(is_active = True)
+
+    # 2 - Fetch only adult team members (age >= 18)
+    # age__gte means this condition `age >= 18`
+    # __gte stands for `greater than or equal to`
+    # age__gte applies `age >= 18` for age column, to fetch only adult team members
+    adult_members = TeamMember.objects.filter(age__gte = 18)
+
+    # 3 - Fetch only team members that their (title includes `dev`)
+
+
+    print(f"\nteam_members : {adult_members}\n")
+    return render(request, 'app/Testing/testing.html', {"team_members": adult_members})

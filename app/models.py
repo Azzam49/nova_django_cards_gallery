@@ -21,10 +21,10 @@ class TeamMember(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True) # optional
 
     # Number = IntegerField
-    age = models.IntegerField() # no need to have max_length
+    age = models.IntegerField() # no need to have max_length # required
 
     # Boolean (True ~ Yes/ False ~ No) = BooleanField
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True) # required
 
     def __str__(self):
         return f"{self.name} - {self.title}"
