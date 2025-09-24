@@ -176,11 +176,17 @@ def testing(request):
     # all_members = TeamMember.objects.all().order_by("name") # Sort by "name" column in ascending (from A to Z)
     # all_members = TeamMember.objects.all().order_by("-name") # Sort by "name" column in descending (from Z to A)
     # all_members = TeamMember.objects.all().order_by("is_active") # Sort by "is_active" column in ascending (Show False first and then True)
-    all_members = TeamMember.objects.all().order_by("-is_active") # Sort by "is_active" column in descending (Show True first and then False)
+    # all_members = TeamMember.objects.all().order_by("-is_active") # Sort by "is_active" column in descending (Show True first and then False)
+    # all_members = TeamMember.objects.all().order_by("-is_active", "-name")
 
-    print(f"\nteam_members : {all_members}\n")
+    # 12 - Limiting Data
+    # first_two = TeamMember.objects.all().order_by("-age")[0:2]
+    next_two = TeamMember.objects.all().order_by("-age")[2:4]
+    
+
+    print(f"\nteam_members : {next_two}\n")
     context = {
-        "team_members": all_members,
+        "team_members": next_two,
         "members_title": "Team Members",
     }
     return render(request, 'app/Testing/testing.html', context)
