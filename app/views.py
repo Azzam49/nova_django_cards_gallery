@@ -149,7 +149,7 @@ def testing(request):
     # kids_developer_member = TeamMember.objects.filter(
     #     age__gte = 6,
     #     age__lte = 10,
-    #     title = "Developer",
+    #     title = "Developer"
     # )
 
     # 8 - Fetch team members that does not have any title (blank title)
@@ -160,14 +160,27 @@ def testing(request):
 
 
     # 9 - Fetch all team members - but exclude team members that has title='Developer'
-    non_developer_members = TeamMember.objects.exclude(title = 'Developer')
+    # non_developer_members = TeamMember.objects.exclude(title = 'Developer')
         # This was fetching both Alice and John
             # Alice , title = blank
             # John, title = 'Developer'
 
     # 10 - Fetch all team members that DO have a title (not blank) - but exclude team members that has title='Developer'
-    non_developer_members_that_have_title = TeamMember.objects.exclude(title = 'Developer').filter(title__isnull=False)
+    # non_developer_members_that_have_title = TeamMember.objects.exclude(title = 'Developer').filter(title__isnull=False)
         # Fetch only John, because Alice does not have a title
 
-    print(f"\nteam_members : {non_developer_members_that_have_title}\n")
-    return render(request, 'app/Testing/testing.html', {"team_members": non_developer_members_that_have_title})
+
+    # 11 - ORDERING/SORTNG results
+    # all_members = TeamMember.objects.all().order_by("age") # Sort by "age" column in ascending (numbers smallest to largest)
+    # all_members = TeamMember.objects.all().order_by("-age") # Sort by "age" column in descending (numbers largest to smallest)
+    # all_members = TeamMember.objects.all().order_by("name") # Sort by "name" column in ascending (from A to Z)
+    # all_members = TeamMember.objects.all().order_by("-name") # Sort by "name" column in descending (from Z to A)
+    # all_members = TeamMember.objects.all().order_by("is_active") # Sort by "is_active" column in ascending (Show False first and then True)
+    all_members = TeamMember.objects.all().order_by("-is_active") # Sort by "is_active" column in descending (Show True first and then False)
+
+    print(f"\nteam_members : {all_members}\n")
+    context = {
+        "team_members": all_members,
+        "members_title": "Team Members",
+    }
+    return render(request, 'app/Testing/testing.html', context)
