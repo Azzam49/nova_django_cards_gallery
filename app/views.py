@@ -224,3 +224,24 @@ def testing(request):
         "members_count": dev_members_count,
     }
     return render(request, 'app/Testing/testing.html', context)
+
+
+def testing_create_update_delete_data(request):
+    print("\ntesting_create_update_delete_data\n")
+
+    # ORM Query - Creating new record
+    # TeamMember.objects.create(
+    #     name="John White - New",
+    #     title="Customer Support",
+    #     age=40,
+    #     is_active=True
+    # )
+
+    # title column : will stay empty
+    # is_active column : will have is_active=True, because it uses the default value from the models.py
+    # TeamMember.objects.create(
+    #     name="Jane - New",
+    #     age=25
+    # )
+
+    return render(request, 'app/Testing/testing2.html', {})
