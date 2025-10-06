@@ -254,7 +254,10 @@ def testing_create_update_delete_data(request):
     ###### Changing title of Ben ##########
     ###### Changing title of Ben ##########
     # 1 - fetching the record we want to update
-    # get() : is used to fetch a single record, if more than single record is returned, it will raise an error
+    # get() :
+    #   - is used to fetch a single record
+    #   - if more than single record is returned, it will raise an error `MultipleObjectsReturned`
+    #   - if no record is returned, it will raise an error `DoesNotExist`
     # filter() : is used to fetch many records
     # ben = TeamMember.objects.filter(name="Ben")
     # print(f"\nben : {ben}\n") # ben : <QuerySet [<TeamMember: Ben - Developer>]>
@@ -265,11 +268,11 @@ def testing_create_update_delete_data(request):
     # since we having more than one record with the name="Ben"
     # ben = TeamMember.objects.get(name="Ben")
 
-    ben = TeamMember.objects.get(id=4) # id - will always returns a single record - id is unique value for each record
+    # ben = TeamMember.objects.get(id=4) # id - will always returns a single record - id is unique value for each record
 
     # 2 - updating the record
-    ben.title = "Designer" # assigning new value to title column
-    ben.save() # saving the new value to the model/database
+    # ben.title = "Designer" # assigning new value to title column
+    # ben.save() # saving the new value to the model/database
     ###### Changing title of Ben ##########
     ###### Changing title of Ben ##########
 
@@ -277,13 +280,13 @@ def testing_create_update_delete_data(request):
 
 
     ###### Changing title of all Designers to Artist ##########
-    designers = TeamMember.objects.filter(title="Designer")
-    print(f"\ndesigners : {designers}\n")
+    # designers = TeamMember.objects.filter(title="Designer")
+    # print(f"\ndesigners : {designers}\n")
 
-    for designer in designers:
-        designer.title = "Artist" # assigning new value
-        designer.is_active = True
-        designer.save()
+    # for designer in designers:
+    #     designer.title = "Artist" # assigning new value
+    #     designer.is_active = True
+    #     designer.save()
     ###### Changing title of all Designers to Artist ##########
 
     ######## ORM Query - Updating record

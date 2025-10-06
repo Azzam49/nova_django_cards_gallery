@@ -8,6 +8,7 @@ class CardAdmin(admin.ModelAdmin):
 
     # list_display is used to display those columns on the django admin site
     list_display = [
+        "id",
         # "image",
         "title",
         "phone",
@@ -19,6 +20,7 @@ class TeamMemberAdmin(admin.ModelAdmin):
 
 
     list_display = [
+        "id",
         "name",
         "title",
         "age",
