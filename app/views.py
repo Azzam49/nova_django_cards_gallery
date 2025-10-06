@@ -184,25 +184,43 @@ def testing(request):
     next_two = TeamMember.objects.all().order_by("-age")[2:4]
 
 
-    # 13 - Picking Specfic columns
+    # 13 - Picking Specfic columns (For performance wise)
     # values() : will fetch specfic columns
     # as_dicts = TeamMember.objects.values("name", "age") # list of dicts
-    as_dicts = TeamMember.objects.all().values("name", "age", "is_active", "title") # list of dicts , eg :  # <QuerySet [{'name': 'Adam', 'age': 10}, {'name': 'John', 'age': 8}, {'name': 'Alice', 'age': 30}, {'name': 'Ben', 'age': 35}, {'name': 'Henry', 'age': 32}, {'name': 'Zen', 'age': 15}]>
+    # as_dicts = TeamMember.objects.all().values("name", "age", "is_active", "title") # list of dicts , eg :  # <QuerySet [{'name': 'Adam', 'age': 10}, {'name': 'John', 'age': 8}, {'name': 'Alice', 'age': 30}, {'name': 'Ben', 'age': 35}, {'name': 'Henry', 'age': 32}, {'name': 'Zen', 'age': 15}]>
     
     
     # 14 - Picking just list of values
     # list_of_tuples = TeamMember.objects.all().values_list("name", "age") # list of tuples eg : <QuerySet [('Adam', 10), ('John', 8), ('Alice', 30), ('Ben', 35), ('Henry', 32), ('Zen', 15)]>
-    all_names_as_list = TeamMember.objects.all().values_list("name", flat=True) # list of names, eg : <QuerySet ['Adam', 'John', 'Alice', 'Ben', 'Henry', 'Zen']>
-    all_names_as_list = list(TeamMember.objects.all().values_list("name", flat=True)) # eg : ['Adam', 'John', 'Alice', 'Ben', 'Henry', 'Zen']
+    # all_names_as_list = TeamMember.objects.all().values_list("name", flat=True) # list of names, eg : <QuerySet ['Adam', 'John', 'Alice', 'Ben', 'Henry', 'Zen']>
+    # all_names_as_list = list(TeamMember.objects.all().values_list("name", flat=True)) # eg : ['Adam', 'John', 'Alice', 'Ben', 'Henry', 'Zen']
 
     # sales = Sales.objects.all().values("sales_price")[:100000] # 3 sec
     # sales = Sales.objects.all()[:100000] # 12 sec
 
-    print(f"\nall_names_as_list : {all_names_as_list}\n")
-    #  <QuerySet [<TeamMember: Alice - Designer>, <TeamMember: Zen - Customer Service>]>
+
+    # 15 - Counting Data
+
+    ############ Counting all Members ############
+    # all_members = TeamMember.objects.all() # eg:  <QuerySet [<TeamMember: Alice - Designer>, <TeamMember: Zen - Customer Service>]>
+    # 1 :
+    # members_count = TeamMember.objects.all().count() # eg: 6
+    # 2 :
+    # members_count = all_members.count() # eg: 6
+    ############ Counting all Members ############
+
+
+    ############ Counting Developer Members ############
+    dev_members = TeamMember.objects.filter(title = "Developer")
+    dev_members_count = dev_members.count()
+    # dev_members_count = TeamMember.objects.filter(title = "Developer").count()
+    ############ Counting Developer Members ############
+
+
 
     context = {
-        "team_members": as_dicts,
+        "team_members": dev_members,
         "members_title": "Team Members",
+        "members_count": dev_members_count,
     }
     return render(request, 'app/Testing/testing.html', context)
