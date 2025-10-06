@@ -287,4 +287,27 @@ def testing_create_update_delete_data(request):
     ###### Changing title of all Designers to Artist ##########
 
     ######## ORM Query - Updating record
+
+
+
+
+    ######## ORM Query - Deleting record
+
+
+    ###### Deleting Alice ##########
+    # # 1 - fetching the record we want to delete
+    # alice = TeamMember.objects.get(id=3)
+    # # 2 - deleting the record
+    # alice.delete()
+    ###### Deleting Alice ##########
+
+
+    ###### Deleting all Customer Support ##########
+    customer_support = TeamMember.objects.filter(title = 'Customer Support')
+    print(f"\ncustomer_support : {customer_support}\n")
+
+    customer_support.delete() # this will delete all records of the `customer_support` variable
+    ###### Deleting all Customer Support ##########
+
+    ######## ORM Query - Deleting record
     return render(request, 'app/Testing/testing2.html', {})
