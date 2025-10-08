@@ -314,3 +314,7 @@ def testing_create_update_delete_data(request):
 
     ######## ORM Query - Deleting record
     return render(request, 'app/Testing/testing2.html', {})
+
+
+def create_team_member(request):
+    return render(request, 'app/create_team_member.html', {})
