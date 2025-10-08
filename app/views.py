@@ -317,4 +317,30 @@ def testing_create_update_delete_data(request):
 
 
 def create_team_member(request):
+
+    ########################################
+    # POST request : only works when click on submit button of HTML form
+    ########################################
+    # Check if we receiving POST request form HTML
+    if request.method == "POST":
+        # extracting (name,title,age) values from HTML form text fields
+        # request.POST.get() will extract the text field's value, by using the name="" attribute.
+        # name attribute of the <input> html element
+        name = request.POST.get('name')
+        title = request.POST.get('title')
+        age = request.POST.get('age')
+
+        print(f"\n\nname : {name}")
+        print(f"title : {title}")
+        print(f"age : {age}\n\n")
+
+        # Use the extracted values to create new team member
+        TeamMember.objects.create(
+            name=name,
+            title=title,
+            age=age,
+        )
+    ########################################
+
+    # Works for GET request : to display HTML form to the user
     return render(request, 'app/create_team_member.html', {})
