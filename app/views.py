@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from app.models import Card, TeamMember
 
@@ -351,3 +351,23 @@ def create_team_member(request):
 def get_team_members(request):
     team_members = TeamMember.objects.all()
     return render(request, 'app/team_members.html', {"team_members": team_members})
+
+
+def delete_all_team_members(request):
+    # Fetching all team members
+    team_members = TeamMember.objects.all()
+
+    # Deleting all team members
+    team_members.delete()
+
+    # Note : Without return render() browser will have HTTPResponse error.
+
+    # This works but is wrong, no need to repeat ourself for re-building the code of get_team_members view function
+    # team_members = TeamMember.objects.all()
+    # return render(request, 'app/team_members.html', {"team_members": team_members})
+
+
+    # Instead : we will redirect the user to get_team_members view function
+    # return redirect("get_team_members") : This will re-run the get_team_members view function
+        # and the get_team_members view function, will return "team_members.html"
+    return redirect("get_team_members")

@@ -23,6 +23,7 @@ from app.views import (
     testing_create_update_delete_data,
     create_team_member,
     get_team_members,
+    delete_all_team_members,
 )
 
 urlpatterns = [
@@ -33,5 +34,6 @@ urlpatterns = [
     path('testing/', testing, name='testing'),
     path('testing2/', testing_create_update_delete_data, name='testing2'),
     path('create-team-member/', create_team_member, name='create_team_member'),
-    path('team-members/', get_team_members, name='get_team_members')
+    path('team-members/', get_team_members, name='get_team_members'),
+    path('delete-all-team-members/', delete_all_team_members, name='delete_all_team_members'),
 ]
