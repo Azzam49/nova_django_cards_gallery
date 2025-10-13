@@ -342,5 +342,6 @@ def create_team_member(request):
         )
     ########################################
 
-    # Works for GET request : to display HTML form to the user
+    # Works for GET/POST request : to display HTML form to the user
+    # For POST , after creating data, it will refresh back the same page
     return render(request, 'app/create_team_member.html', {})
