@@ -1,0 +1,23 @@
+{% extends 'app/assets/base.html' %}
+{% load static %}
+
+
+
+{% block mainBlock %}
+
+    <h1>Team Members</h1>
+
+   {% for team_member in team_members %}
+
+    <div class="card mt-5" style="width: 18rem; margin-right: 30px;">
+        <div class="card-body">
+            <h5 class="card-title">Title : {{team_member.title}}</h5>
+            <p class="card-text">Name : {{team_member.name}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+   {% endfor %}
+
+
+{% endblock mainBlock %}

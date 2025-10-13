@@ -345,3 +345,9 @@ def create_team_member(request):
     # Works for GET/POST request : to display HTML form to the user
     # For POST , after creating data, it will refresh back the same page
     return render(request, 'app/create_team_member.html', {})
+
+
+
+def get_team_members(request):
+    team_members = TeamMember.objects.all()
+    return render(request, 'app/team_members.html', {"team_members": team_members})
