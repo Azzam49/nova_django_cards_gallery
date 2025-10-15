@@ -5,7 +5,10 @@
 
 {% block mainBlock %}
 
-    <h1>Team Members</h1>
+    <h1>Team Members ({{count_team_members}})</h1>
+
+    <a class="btn btn-success mb-3" href="{% url 'create_team_member' %}">Create Member</a>
+
     <form method="post" action="{% url 'delete_all_team_members' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Delete All Team Members</button>

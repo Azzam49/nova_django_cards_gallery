@@ -349,8 +349,16 @@ def create_team_member(request):
 
 
 def get_team_members(request):
+
     team_members = TeamMember.objects.all()
-    return render(request, 'app/team_members.html', {"team_members": team_members})
+    count_team_members = TeamMember.objects.all().count()
+
+    context = {
+        "team_members": team_members,
+        "count_team_members": count_team_members,
+    }
+
+    return render(request, 'app/team_members.html', context)
 
 
 def delete_all_team_members(request):
