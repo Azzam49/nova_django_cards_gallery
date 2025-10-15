@@ -22,7 +22,7 @@
             <h5 class="card-title">Title : {{team_member.title}}</h5>
             <p class="card-text">Name : {{team_member.name}}</p>
 
-            <form method="post" action="">
+            <form method="post" action="{% url 'delete_team_member' %}">
                 {% csrf_token %}
                 <button class="btn btn-danger custom-red-button">Delete</button>
             </form>

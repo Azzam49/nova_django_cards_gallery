@@ -381,3 +381,21 @@ def delete_all_team_members(request):
     # return redirect("get_team_members") : This will re-run the get_team_members view function
         # and the get_team_members view function, will return "team_members.html"
     return redirect("get_team_members")
+
+
+def delete_team_member(request):
+    # Use case : to delete single team member.
+    # We are going to find the team member to delete by using it's (id)
+
+    member_id = 35
+
+    # Fetching single team member
+    # get : will error in case the record does not exists.
+    # TODO : avoid this error
+    team_member = TeamMember.objects.get(id=member_id)
+    print(f"\n\nteam_member : {team_member}\n\n")
+
+    # Deleting single team member
+    team_member.delete()
+
+    return redirect("get_team_members")

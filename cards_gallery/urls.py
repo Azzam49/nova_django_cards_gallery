@@ -24,6 +24,7 @@ from app.views import (
     create_team_member,
     get_team_members,
     delete_all_team_members,
+    delete_team_member,
 )
 
 urlpatterns = [
@@ -36,4 +37,5 @@ urlpatterns = [
     path('create-team-member/', create_team_member, name='create_team_member'),
     path('team-members/', get_team_members, name='get_team_members'),
     path('delete-all-team-members/', delete_all_team_members, name='delete_all_team_members'),
+    path('delete-team-member/', delete_team_member, name="delete_team_member")
 ]
