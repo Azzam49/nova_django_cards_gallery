@@ -354,11 +354,13 @@ def get_team_members(request):
 
 
 def delete_all_team_members(request):
-    # Fetching all team members
-    team_members = TeamMember.objects.all()
+    # only delete team members if request is "POST" - that mean user had clicked on submit button
+    if request.method == "POST":
+        # Fetching all team members
+        team_members = TeamMember.objects.all()
 
-    # Deleting all team members
-    team_members.delete()
+        # Deleting all team members
+        team_members.delete()
 
     # Note : Without return render() browser will have HTTPResponse error.
 
