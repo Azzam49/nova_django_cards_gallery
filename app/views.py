@@ -383,11 +383,9 @@ def delete_all_team_members(request):
     return redirect("get_team_members")
 
 
-def delete_team_member(request):
+def delete_team_member(request, member_id):
     # Use case : to delete single team member.
     # We are going to find the team member to delete by using it's (id)
-
-    member_id = 35
 
     # Fetching single team member
     # get : will error in case the record does not exists.
