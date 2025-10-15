@@ -21,7 +21,11 @@
         <div class="card-body">
             <h5 class="card-title">Title : {{team_member.title}}</h5>
             <p class="card-text">Name : {{team_member.name}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+
+            <form method="post" action="">
+                {% csrf_token %}
+                <button class="btn btn-danger custom-red-button">Delete</button>
+            </form>
         </div>
     </div>
 
