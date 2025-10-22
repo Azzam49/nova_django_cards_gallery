@@ -398,3 +398,8 @@ def delete_team_member(request, member_id):
         team_member.delete()
 
     return redirect("get_team_members")
+
+
+def edit_team_member(request):
+    context = {}
+    return render(request, 'app/edit_team_member.html', context)
