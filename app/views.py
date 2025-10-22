@@ -400,6 +400,16 @@ def delete_team_member(request, member_id):
     return redirect("get_team_members")
 
 
-def edit_team_member(request):
-    context = {}
+def edit_team_member(request, member_id):
+    
+    # Use the member_id to fetch the team_member.
+    # We are fetching the team_member, that we want to give for edit_team_member.html, for auto filling values.
+    team_member = TeamMember.objects.get(id=member_id)
+
+    # team_member.name
+    # team_member.title
+    # team_member.age
+    context = {
+        "team_member": team_member
+    }
     return render(request, 'app/edit_team_member.html', context)

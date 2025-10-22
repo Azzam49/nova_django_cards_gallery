@@ -1,6 +1,30 @@
 {% extends 'app/assets/base.html' %}
 
 {% block mainBlock %}
-    <h1>Edit Team Member<h1>
+    <h2>Edit Team Member</h2>
 
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            {% comment %}
+                value attribute on the input tag, is used to auto fill the input field with a value.
+
+                we can use the value attribute to fill in values that are coming from view function.
+            {% endcomment %}
+            <input type="text" class="form-control" id="name" name="name" required value="{{team_member.name}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{team_member.title}}">
+        </div>
+
+         <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" name="age" min="0" required value="{{team_member.age}}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 {% endblock mainBlock %}

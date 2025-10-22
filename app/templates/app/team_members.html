@@ -7,8 +7,20 @@
 
     <h1>Team Members ({{count_team_members}})</h1>
 
+    {% comment %}
+        Having the button with <a> tag, allows you to send GET request to backend/django
+
+        - When to consider sending GET request?
+            - When you want to navigate to another page
+    {% endcomment %}
     <a class="btn btn-success mb-3" href="{% url 'create_team_member' %}">Create Member</a>
 
+    {% comment %}
+        Having the button inside <form> tag, allows you to send POST request to backend/django
+
+        - When to consider sending POST request?
+            - When your request is doing action, eg. (Updating, Creating, Deleting data etc..)
+    {% endcomment %}
     <form method="post" action="{% url 'delete_all_team_members' %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Delete All Team Members</button>
@@ -22,6 +34,8 @@
             <h5 class="card-title">ID : {{team_member.id}}</h5>
             <h5 class="card-title">Title : {{team_member.title}}</h5>
             <p class="card-text">Name : {{team_member.name}}</p>
+
+            <a class="btn btn-warning mb-2" href="{% url 'edit_team_member' team_member.id %}">Edit</a>
 
             <form method="post" action="{% url 'delete_team_member' team_member.id %}">
                 {% csrf_token %}
