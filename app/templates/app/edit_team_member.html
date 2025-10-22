@@ -3,6 +3,13 @@
 {% block mainBlock %}
     <h2>Edit Team Member</h2>
 
+
+    {% comment %}
+        Since not action attribute used (no url defined),
+        <form> will send POST request to the current page's url
+        , for example edit_team_member page url : http://localhost:8000/edit-team-member/<member_id>/
+        <form> will send request to : /edit-team-member/<member_id>/
+    {% endcomment %}
     <form method="post">
         {% csrf_token %}
         <div class="mb-3">
@@ -25,6 +32,6 @@
             <input type="number" class="form-control" id="age" name="age" min="0" required value="{{team_member.age}}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
 {% endblock mainBlock %}

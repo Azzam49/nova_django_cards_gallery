@@ -401,10 +401,28 @@ def delete_team_member(request, member_id):
 
 
 def edit_team_member(request, member_id):
-    
+
     # Use the member_id to fetch the team_member.
     # We are fetching the team_member, that we want to give for edit_team_member.html, for auto filling values.
     team_member = TeamMember.objects.get(id=member_id)
+
+    # This condition : user had clicked on `Save` button at the Edit Page
+    if request.method == "POST":
+        # 1- Get the values from HTML inputs
+        name = request.POST.get('name')
+        title = request.POST.get('title')
+        age = request.POST.get('age')
+
+        # print(f"\n\nname : {name}")
+        # print(f"title : {title}")
+        # print(f"age : {age}\n\n")
+        # 2- Update the team_member on TeamMember model, using the HTML inputs
+        team_member.name = name
+        team_member.title = title
+        team_member.age = age
+        team_member.save()
+
+        return redirect("get_team_members")
 
     # team_member.name
     # team_member.title

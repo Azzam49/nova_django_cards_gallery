@@ -6,6 +6,13 @@
     {% comment %}
         method="post" : allows the HTML form to send POST request to Django
     {% endcomment %}
+
+    {% comment %}
+        Since not action attribute used (no url defined),
+        <form> will send POST request to the current page's url
+        , for example create_team_member page url : http://localhost:8000/create-team-member/
+        <form> will send request to : /create-team-member/
+    {% endcomment %}
     <form method="post">
         {% comment %}
             Django requires us to add csrf_token - missing it will raise an error
