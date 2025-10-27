@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from app.models import Card, TeamMember
 
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def home(request):
@@ -438,5 +439,34 @@ def user_login(request):
     # user click on login button
     if request.method == "POST":
         print(f"\nUser clicked on login button\n")
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Authenticate User (Authenticate = check if username and password are matching!)
+        # Logic of authenticate function
+            # if authenticate finds the username and password matching:
+                # AUTHENTICATE SUCCESSFUL: it will return the user object
+            # if incorrect username or password:
+                # AUTHENTICATE FAILED: it will return None
+        user = authenticate(request, username=username, password=password)
+
+        print(f"\nuser : {user}\n")
+
+        # Login Flow
+        if user: # condition works if user is not any of: ('', None, 0)
+            # if AUTHENTICATE SUCCESSFUL:
+            # login user
+            login(request, user) # This login() function will login your user.
+
+            print(f"Login Successfull")
+
+            # take user to home page
+            return redirect('home')
+        else:
+            # if AUTHENTICATE FAILED:
+            # show error message
+            # take user back to login page
+            print("Invalid username or password, Please try again!")
+
 
     return render(request, 'app/login.html', {})
