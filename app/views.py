@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from app.models import Card, TeamMember
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -317,6 +318,11 @@ def testing_create_update_delete_data(request):
     return render(request, 'app/Testing/testing2.html', {})
 
 
+# - login_required is a decorator that django gives us.
+# - decorators is something related to python in general.
+# - decorators let you add features to your original function just by adding @login_required as first line.
+# - here we are using @login_required decorator, to let django restrict the access to create_team_member unless you logged in
+@login_required
 def create_team_member(request):
 
     ########################################

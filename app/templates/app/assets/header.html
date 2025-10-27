@@ -14,12 +14,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">Contact</a>
                         </li>
+
+                    {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{% url 'create_team_member' %}">Create Team Member</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{% url 'get_team_members' %}">Team Members</a>
                         </li>
+                    {% endif %}
+
+
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{% url 'user_login' %}">Login</a>
                         </li>
