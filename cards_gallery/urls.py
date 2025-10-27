@@ -26,6 +26,7 @@ from app.views import (
     delete_all_team_members,
     delete_team_member,
     edit_team_member,
+    user_login,
 )
 
 urlpatterns = [
@@ -40,4 +41,5 @@ urlpatterns = [
     path('delete-all-team-members/', delete_all_team_members, name='delete_all_team_members'),
     path('delete-team-member/<member_id>/', delete_team_member, name="delete_team_member"),
     path('edit-team-member/<member_id>/', edit_team_member, name='edit_team_member'),
+    path('login/', user_login, name='user_login'),
 ]

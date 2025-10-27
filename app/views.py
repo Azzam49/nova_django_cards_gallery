@@ -431,3 +431,12 @@ def edit_team_member(request, member_id):
         "team_member": team_member
     }
     return render(request, 'app/edit_team_member.html', context)
+
+
+
+def user_login(request):
+    # user click on login button
+    if request.method == "POST":
+        print(f"\nUser clicked on login button\n")
+
+    return render(request, 'app/login.html', {})
