@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 from app.models import Card, TeamMember
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home(request):
@@ -470,3 +470,10 @@ def user_login(request):
 
 
     return render(request, 'app/login.html', {})
+
+
+def user_logout(request):
+    print("\nLogout user\n")
+    logout(request) # The logout() function will logout the user
+    # take user to home page
+    return redirect('home')
