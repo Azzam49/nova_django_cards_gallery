@@ -25,16 +25,22 @@
                     {% endif %}
 
 
+                    {% if user.is_authenticated %}
+                        {% comment %} User is Logged in {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'user_logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        {% comment %} User is Logged out {% endcomment %}
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{% url 'user_login' %}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'user_logout' %}">Logout</a>
-                        </li>
-
-                        <li class="nav-item">
                             <a class="nav-link text-white" href="{% url 'register_user' %}">Register</a>
                         </li>
+                    {% endif %}
+
+
                     </ul>
                 </nav>
             </div>
