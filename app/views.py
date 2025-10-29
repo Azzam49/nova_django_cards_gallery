@@ -4,6 +4,7 @@ from app.models import Card, TeamMember
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -486,4 +487,53 @@ def user_logout(request):
 
 
 def register_user(request):
+
+    if request.method == "POST":
+        # works when the user clicks on `Submit` button of the Register page
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        print(f"\n\nusername : {username}")
+        print(f"password : {password}")
+        print(f"confirm_password : {confirm_password}\n\n")
+
+
+
+        ################ Basic validations ################
+
+        # Checking passwords matching
+        if password != confirm_password:
+            print("Error : Passwords do not match!")
+            return render(request, 'app/register_user.html', {})
+
+
+        # user = User.objects.filter(username=username)
+        # OUTPUT : user : <QuerySet [<User: admin>]>
+
+        # returns either True/False
+            # if the object exists/found on User Model? then return True
+            # if the object not-exists/not-found on User Model? then return False
+        is_user_exists = User.objects.filter(username=username).exists()
+        # OUTPUT : is_user_exists : True
+
+        # Check if user exists
+            # We need to check if the `username` filled by the html register form
+                # does exists already on the User model or not ?
+        if is_user_exists == True:
+            print("Error : Username already exists!")
+            return render(request, 'app/register_user.html', {})
+
+        ################ Basic validations ################
+
+
+        # Create user
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+        )
+
+        # Switch the user to login page
+        return redirect("user_login")
+
     return render(request, 'app/register_user.html', {})
