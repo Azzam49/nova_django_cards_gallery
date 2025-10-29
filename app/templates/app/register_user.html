@@ -3,6 +3,18 @@
 {% block mainBlock %}
     <h1>Register User</h1>
 
+    {% comment %}
+        `messages`` is provided by Django.
+        it allow the HTML to display error message in case view function had send the error message
+    {% endcomment %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
         <div class="mb-3">

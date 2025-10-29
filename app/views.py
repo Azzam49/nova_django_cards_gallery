@@ -5,6 +5,7 @@ from app.models import Card, TeamMember
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -474,6 +475,7 @@ def user_login(request):
             # show error message
             # take user back to login page
             print("Invalid username or password, Please try again!")
+            messages.error(request, "Invalid username or password, Please try again!")
 
 
     return render(request, 'app/login.html', {})
@@ -505,6 +507,17 @@ def register_user(request):
         # Checking passwords matching
         if password != confirm_password:
             print("Error : Passwords do not match!")
+
+            # `messages` is an object provided by Django.
+            # its used to send  messages to the HTML.
+                # it can send error message by:
+                    # messages.error()
+                # it can send success message by:
+                    # messages.success()
+
+            # example : sending error message
+            messages.error(request, "Error : Passwords do not match!")
+
             return render(request, 'app/register_user.html', {})
 
 
@@ -522,6 +535,7 @@ def register_user(request):
                 # does exists already on the User model or not ?
         if is_user_exists == True:
             print("Error : Username already exists!")
+            messages.error(request, "Error : Username already exists!")
             return render(request, 'app/register_user.html', {})
 
         ################ Basic validations ################
