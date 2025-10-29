@@ -28,6 +28,7 @@ from app.views import (
     edit_team_member,
     user_login,
     user_logout,
+    register_user,
 )
 
 urlpatterns = [
@@ -44,4 +45,5 @@ urlpatterns = [
     path('edit-team-member/<member_id>/', edit_team_member, name='edit_team_member'),
     path('login/', user_login, name='user_login'),
     path('logout/', user_logout, name='user_logout'),
+    path('register-user/', register_user, name='register_user'),
 ]

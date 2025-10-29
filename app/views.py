@@ -483,3 +483,7 @@ def user_logout(request):
     logout(request) # The logout() function will logout the user
     # take user to home page
     return redirect('home')
+
+
+def register_user(request):
+    return render(request, 'app/register_user.html', {})
