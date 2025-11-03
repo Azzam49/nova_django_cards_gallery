@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Card, TeamMember
+from app.models import Card, TeamMember, Department
 
 # Register your models here.
 
@@ -24,5 +24,17 @@ class TeamMemberAdmin(admin.ModelAdmin):
         "name",
         "title",
         "age",
-        "is_active"
+        "is_active",
+        "department"
+    ]
+
+
+@admin.register(Department)
+class DepartmentAdmin(admin.ModelAdmin):
+
+
+    list_display = [
+        "id",
+        "name",
+        "description",
     ]
