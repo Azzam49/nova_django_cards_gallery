@@ -1,5 +1,20 @@
 {% extends 'app/assets/base.html' %}
 
 {% block mainBlock %}
-    <h1>About Us<h1>
+    <div class="row">
+        <div class="col-12 col-lg-10">
+            <h1 class="mb-3">About Us</h1>
+            <p class="lead">Team Members Management is a simple Django project designed to help students learn CRUD operations, authentication, and clean UI patterns using Bootstrap.</p>
+            <hr>
+            <h2 class="h5 mt-4">What you can learn here</h2>
+            <ul class="mb-3">
+                <li>Create, edit, and delete team members with validation</li>
+                <li>Use Django authentication (login, logout, register)</li>
+                <li>Work with models and relationships (Departments and Members)</li>
+                <li>Build responsive layouts with Bootstrap 5</li>
+                <li>Add small UX touches like active links and dark mode</li>
+            </ul>
+            <p>If you are following along as a student, explore the navigation links above and check the code comments in templates for explanations you can reuse in your own projects.</p>
+        </div>
+    </div>
 {% endblock mainBlock %}
