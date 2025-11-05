@@ -5,9 +5,10 @@
 
 let html_element = document.documentElement;
 let theme_btn = document.getElementById("themeToggleBtn");
+let theme_icon = document.getElementById("themeToggleIcon");
 let default_theme = 'light';
 
-console.log("theme_btn : ", theme_btn)
+console.log("theme_icon : ", theme_icon)
 
 // set default theme
 html_element.setAttribute('data-bs-theme', default_theme)
@@ -19,8 +20,10 @@ theme_btn.addEventListener('click', function(){
 
     if(current_theme == 'light'){
         next_theme = 'dark';
+        theme_icon.textContent = "🌙"
     }else{
         next_theme = 'light'
+        theme_icon.textContent = "☀️"
     }
 
     html_element.setAttribute('data-bs-theme', next_theme)
