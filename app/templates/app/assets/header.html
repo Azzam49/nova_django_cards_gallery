@@ -2,14 +2,17 @@
     <header class="bg-primary text-white py-3">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="h3 mb-0">Card Gallery</h1>
+                <h1 class="h3 mb-0">Team Members Management</h1>
+
+                {% with current_url_name=request.resolver_match.url_name %}
+
                 <nav>
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'home' %}">Home</a>
+                            <a class="nav-link text-white {% if current_url_name == 'home'%} active-page {% endif %}" href="{% url 'home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'about-us' %}">About</a>
+                            <a class="nav-link text-white {% if current_url_name == 'about-us'%} active-page {% endif %}" href="{% url 'about-us' %}">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#">Contact</a>
@@ -17,10 +20,10 @@
 
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'create_team_member' %}">Create Team Member</a>
+                            <a class="nav-link text-white {% if current_url_name == 'create_team_member'%} active-page {% endif %}" href="{% url 'create_team_member' %}">Create Team Member</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'get_team_members' %}">Team Members</a>
+                            <a class="nav-link text-white {% if current_url_name == 'get_team_members'%} active-page {% endif %}" href="{% url 'get_team_members' %}">Team Members</a>
                         </li>
                     {% endif %}
 
@@ -33,13 +36,13 @@
                     {% else %}
                         {% comment %} User is Logged out {% endcomment %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'user_login' %}">Login</a>
+                            <a class="nav-link text-white {% if current_url_name == 'user_login'%} active-page {% endif %}" href="{% url 'user_login' %}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'register_user' %}">Register</a>
+                            <a class="nav-link text-white {% if current_url_name == 'register_user'%} active-page {% endif %}" href="{% url 'register_user' %}">Register</a>
                         </li>
                     {% endif %}
-
+                    {% endwith %}
 
                     </ul>
                 </nav>
