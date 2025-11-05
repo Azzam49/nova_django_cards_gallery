@@ -10,11 +10,9 @@ from django.contrib import messages
 # Create your views here.
 def home(request):
 
-    # Fetch all records from the Card model
-    cards = Card.objects.all() # ORM Query (Object Relational Mapping)
-    # cards is QuerySet datatype, you can treat it as list of dicts
+    team_members_count = TeamMember.objects.all().count()
 
-    return render(request, 'app/home.html', {"cards": cards})
+    return render(request, 'app/home.html', {"team_members_count": team_members_count})
 
 
 

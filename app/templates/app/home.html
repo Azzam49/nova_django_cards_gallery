@@ -5,26 +5,60 @@
 
 {% block mainBlock %}
 
-    <h1>Home Page</h1>
+    <!-- Hero section -->
+    <section class="mb-4">
+        <div class="p-4 p-md-5 bg-light rounded-3 border">
+            <div class="container-fluid py-2">
+                <h1 class="display-6 fw-semibold mb-2">Welcome to Team Members Management</h1>
+                <p class="mb-0 text-secondary">Manage your team members with simple create, edit, and delete actions. Use the links below to get started.</p>
+            </div>
+        </div>
+    </section>
 
     {% if user.is_authenticated %}
-        {% for card in cards %}
 
-            <div class="card" style="width: 18rem; margin-right: 30px;">
-                <img src="{{card.image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{card.title}}</h5>
-                    <p class="card-text">{{card.description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-
-        {% endfor %}
     {% else %}
         <p>
         You are logged out, login in from <a href="{% url 'user_login' %}">here</a> to unlock a great experience!
         </p>
     {% endif %}
+
+    <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="h5 mb-2">Total Team Members</h2>
+                    <p class="display-6 mb-0">{{ team_members_count|default:0 }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="h5">Explore</h2>
+                    <p class="text-secondary">View and manage your team members.</p>
+                    <div class="mt-auto d-flex gap-2">
+                        <a href="{% url 'get_team_members' %}" class="btn btn-primary">View Team Members</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'create_team_member' %}" class="btn btn-outline-primary">Create Member</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="col-12 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="h5">Tips</h2>
+                    <ul class="mb-0">
+                        <li>Use the Team Members page to edit or delete entries.</li>
+                        <li>Try the dark mode toggle in the header.</li>
+                        <li>Visit About Us to see course goals.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock mainBlock %}
