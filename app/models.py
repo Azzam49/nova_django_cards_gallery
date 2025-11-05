@@ -18,7 +18,7 @@ class Department(models.Model):
     description = models.CharField(max_length=300, blank=True, null=True) # optional
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class TeamMember(models.Model):

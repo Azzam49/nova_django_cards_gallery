@@ -34,6 +34,7 @@
             <h5 class="card-title">ID : {{team_member.id}}</h5>
             <h5 class="card-title">Title : {{team_member.title}}</h5>
             <p class="card-text">Name : {{team_member.name}}</p>
+            <p class="card-text">Department : {{team_member.department.name}}</p>
 
             <a class="btn btn-warning mb-2" href="{% url 'edit_team_member' team_member.id %}">Edit</a>
 
