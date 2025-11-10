@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,3 +131,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
     # /Users/smartretaildevit4/Desktop/cards-gallery/static
 ]
+
+# STATIC_ROOT will be used after website is Deployed.
+# It will allow the deployed website to use static files from the `staticfiles` folder
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
